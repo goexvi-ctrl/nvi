@@ -149,14 +149,14 @@ scope for this suite.
   legacy BSD /dev/ptyXX names (the System V grantpt path is compiled
   out because configure leaves HAVE_SYS5_PTY unset), and those nodes
   fail with EAGAIN on modern macOS, so script reports "Error: pty".
-- the collating-element checks in unit/regex/test_regex.c: the
-  symbolic-name lookup in p_b_coll_elem (regex/regcomp.c) tests
-  MEMCMP() for nonzero instead of zero, so "[[.comma.]]" resolves
-  to the first same-length cnames entry that differs from "comma",
-  and an unknown name compiles instead of failing with
-  REG_ECOLLATE.  Single-character elements like "[[.a.]]" work
-  (they use a separate fallback).  Marked with CHECK_XFAIL, which
-  fails loudly if the lookup is ever fixed.
+- the collating-element name lookup in regex/regcomp.c (p_b_coll_elem)
+  tested MEMCMP() for nonzero instead of zero, so "[[.comma.]]" resolved
+  to the wrong cnames entry and an unknown name compiled instead of
+  failing with REG_ECOLLATE.  This is FIXED on this branch (the
+  comparison is now !MEMCMP, matching the parallel p_b_cclass lookup),
+  so unit/regex/test_regex.c now asserts the corrected behavior with
+  plain CHECK rather than CHECK_XFAIL.  It is the one issue the suite
+  found that is fixed here rather than left as an expected failure.
 
 ## Coverage notes
 

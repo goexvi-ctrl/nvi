@@ -432,19 +432,16 @@ test_collating_and_many_groups(void)
 
 	/*
 	 * Collating elements and equivalence classes.  Single
-	 * characters work.  The symbolic names (the cnames table) are
-	 * broken: the name lookup in p_b_coll_elem (regcomp.c) tests
-	 * MEMCMP() for nonzero instead of zero, so a known name
-	 * resolves to the first same-length entry that DIFFERS from
-	 * it, and an unknown name finds some entry too instead of
-	 * failing with REG_ECOLLATE.
+	 * characters work, and so do the symbolic names (the cnames
+	 * table): the p_b_coll_elem name lookup in regcomp.c compares
+	 * with !MEMCMP (fixed on this branch), so a known name resolves
+	 * to its own entry and an unknown name reports REG_ECOLLATE.
 	 */
 	CHECK(m("[[.a.]]", REG_BASIC, "a", 0), "[.a.] matches a");
-	CHECK_XFAIL(m("[[.comma.]]", REG_BASIC, ",", 0),
-	    "[.comma.] symbolic name (inverted lookup bug)");
-	CHECK_XFAIL(comp_err("[[.no-such-elem.]]", REG_BASIC) ==
-	    REG_ECOLLATE,
-	    "unknown collating element error (inverted lookup bug)");
+	CHECK(m("[[.comma.]]", REG_BASIC, ",", 0),
+	    "[.comma.] symbolic name resolves");
+	CHECK(comp_err("[[.no-such-elem.]]", REG_BASIC) == REG_ECOLLATE,
+	    "unknown collating element reports REG_ECOLLATE");
 	CHECK(m("[[=a=]]", REG_BASIC, "a", 0), "[=a=] matches a");
 	CHECK(!m("[[=a=]]", REG_BASIC, "b", 0), "[=a=] rejects b");
 
