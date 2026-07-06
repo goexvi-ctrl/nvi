@@ -1,0 +1,5 @@
+unit/regex/test_regex
+unit/regex/test_regex.dSYM/
+unit/db/dbtest
+unit/db/dbtest.dSYM/
+*.o
