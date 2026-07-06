@@ -16,7 +16,7 @@ import (
 	"strings"
 	"testing"
 
-	"goterm"
+	"github.com/goexvi-ctrl/goterm"
 )
 
 // startViStartup starts the editor with startup files and

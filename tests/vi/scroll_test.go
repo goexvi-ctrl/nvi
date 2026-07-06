@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"goterm"
+	"github.com/goexvi-ctrl/goterm"
 )
 
 // corruptScreen scribbles over the emulated display by writing

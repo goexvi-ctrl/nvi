@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"goterm"
+	"github.com/goexvi-ctrl/goterm"
 )
 
 const csMain = "int helper(int x);\n\nint main(void)\n{\n\treturn helper(1);\n}\n"

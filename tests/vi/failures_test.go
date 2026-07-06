@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"goterm"
+	"github.com/goexvi-ctrl/goterm"
 )
 
 // settleCursor sends the keys for a command that must fail, waits

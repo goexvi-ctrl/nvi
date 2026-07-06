@@ -9,7 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"goterm"
+	"github.com/goexvi-ctrl/goterm"
 )
 
 // TestScriptCommand is an expected failure: the script command

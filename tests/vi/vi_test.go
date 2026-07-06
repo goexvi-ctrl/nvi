@@ -16,7 +16,7 @@ import (
 	"testing"
 	"time"
 
-	"goterm"
+	"github.com/goexvi-ctrl/goterm"
 )
 
 const (
