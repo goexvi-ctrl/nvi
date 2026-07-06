@@ -889,7 +889,7 @@ p_b_coll_elem(register struct parse *p, int endc)
 	}
 	len = p->next - sp;
 	for (cp = cnames; cp->name != NULL; cp++)
-		if (STRLEN(cp->name) == len && MEMCMP(cp->name, sp, len))
+		if (STRLEN(cp->name) == len && !MEMCMP(cp->name, sp, len))
 			return(cp->code);	/* known name */
 	if (len == 1)
 		return(*sp);	/* single character */
