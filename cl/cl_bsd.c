@@ -280,7 +280,9 @@ lcmp(a, b)
  * Try and work around the problem, since we only care about the return value.
  *
  * PUBLIC: #ifdef HAVE_CURSES_TIGETSTR
+ * PUBLIC: #ifndef ORACLE
  * PUBLIC: char *tigetstr();
+ * PUBLIC: #endif
  * PUBLIC: #else
  * PUBLIC: char *tigetstr __P((char *));
  * PUBLIC: #endif

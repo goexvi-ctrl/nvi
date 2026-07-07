@@ -200,6 +200,10 @@ extern KEYLIST keylist[];
 	(KEYS_WAITING(sp) &&						\
 	    FL_ISSET((sp)->wp->i_event[(sp)->wp->i_next].e_flags, CH_MAPPED))
 
+#ifdef __APPLE__
+#include <ctype.h>
+#endif
+
 /*
  * Ex/vi commands are generally separated by whitespace characters.  We
  * can't use the standard isspace(3) macro because it returns true for
@@ -209,7 +213,7 @@ extern KEYLIST keylist[];
  * XXX
  * Note side effect, ch is evaluated multiple times.
  */
-#ifndef isblank
+#if !defined(isblank) && !defined(__APPLE__)
 #define	isblank(ch)	((ch) == ' ' || (ch) == '\t')
 #endif
 

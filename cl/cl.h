@@ -26,6 +26,10 @@
 #endif
 #endif
 
+#ifdef __APPLE__
+#include <term.h>
+#endif
+
 typedef struct _cl_private {
 	char	 ibuf[256];	/* Input keys. */
 
