@@ -1,1 +1,6 @@
 /build.unix/
+/.claude/
+/dist/autom4te.cache/
+/dist/configure~
+/vi.recover/
+
